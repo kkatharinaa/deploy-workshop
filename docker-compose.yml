@@ -18,21 +18,20 @@ services:
       timeout: 30s
       retries: 5
       start_period: 30s
-
-db:
-  container_name: db
-  image: "mariadb:10.11"
-  environment:
-    - MYSQL_USER=nonroot
-    - MYSQL_PASSWORD=nonroot
-    - MYSQL_DATABASE=test
-    - MYSQL_ROOT_PASSWORD=123root
-    - TZ=UTC
-  restart: unless-stopped
-  healthcheck:
-      test: ["mysql -uroot -p123root -e 'SELECT * from mysql.help_topic'"]
-      interval: 1m30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-  command: ["mysqld"]
+  db:
+    container_name: db
+    image: "mariadb:10.11"
+    environment:
+      - MYSQL_USER=nonroot
+      - MYSQL_PASSWORD=nonroot
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_PASSWORD=123root
+      - TZ=UTC
+    restart: unless-stopped
+    healthcheck:
+        test: "mysql -uroot -p123root -e 'SELECT * from mysql.help_topic'"
+        interval: 1m30s
+        timeout: 30s
+        retries: 5
+        start_period: 30s
+    command: ["mysqld"]
