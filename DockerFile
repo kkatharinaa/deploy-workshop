@@ -11,6 +11,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Update and upgrade system packages
 RUN apt update && apt upgrade -y
 
+# install curl for the nestjs healthcheck
+RUN apt install curl -y
+
 # Set working directory inside the container
 WORKDIR /usr/src/app
 
